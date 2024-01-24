@@ -1,16 +1,15 @@
 package com.example.chattyio.service;
 
+import com.example.chattyio.entity.Category;
+import com.example.chattyio.entity.PriceHistory;
 import com.example.chattyio.entity.Product;
-import com.example.chattyio.entity.ProductPriceHistory;
-import com.example.chattyio.entity.ProductSubCategory;
-import com.example.chattyio.repository.ProductPriceHistoryRepository;
+import com.example.chattyio.repository.CategoryRepository;
+import com.example.chattyio.repository.PriceHistoryRepository;
 import com.example.chattyio.repository.ProductRepository;
-import com.example.chattyio.repository.ProductSubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Set;
 
 @Service
 
@@ -19,19 +18,23 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private ProductSubCategoryRepository productSubCategoryRepository;
+    private CategoryRepository categoryRepository;
     @Autowired
-    private ProductPriceHistoryRepository productPriceHistoryRepository;
+    private PriceHistoryRepository priceHistoryRepository;
 
-     public ProductSubCategory getProductSubcategory(Integer subcategoryId) {
-        return productSubCategoryRepository.findById(subcategoryId).get();
+     public Category getCategory(Integer categoryId) {
+        return categoryRepository.findById(categoryId).get();
     }
 
-    public List<Product> getProductsBySubcategoryId(Integer subcategoryId) {
-        return productRepository.findByProductSubCategoryId(subcategoryId);
+    public Set<Product> getProductsByCategoryId(Integer categoryId) {
+        return productRepository.findByCategoryId(categoryId);
     }
 
-    public List<ProductPriceHistory> getProductPriceHistory(Integer productId) {
-        return productPriceHistoryRepository.findByProductId(productId);
+    public Set<PriceHistory> getPriceHistoriesByProductId(Integer productId) {
+        return priceHistoryRepository.findByProductId(productId);
+    }
+
+    public Category getProductCategoryDetails(int categoryId) {
+        return categoryRepository.getProductCategoryDetails(categoryId);
     }
 }

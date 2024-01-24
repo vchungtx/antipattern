@@ -3,8 +3,8 @@ package com.example.chattyio.repository;
 import com.example.chattyio.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Set;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    List<Product> findByProductSubCategoryId(Integer productSubCategoryId);
+    Set<Product> findByCategoryId(Integer categoryId);
 }
