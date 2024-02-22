@@ -28,6 +28,11 @@ public class Product implements java.io.Serializable {
     public Product() {
     }
 
+    public Product(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
 
@@ -68,6 +73,14 @@ public class Product implements java.io.Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
 

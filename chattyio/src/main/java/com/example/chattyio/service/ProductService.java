@@ -24,6 +24,9 @@ public class ProductService {
      public Category getCategory(Integer categoryId) {
         return categoryRepository.findById(categoryId).get();
     }
+    public Product getProduct(Integer id) {
+        return productRepository.findById(id).get();
+    }
 
     public Set<Product> getProductsByCategoryId(Integer categoryId) {
         return productRepository.findByCategoryId(categoryId);
